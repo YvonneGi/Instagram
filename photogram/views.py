@@ -6,7 +6,7 @@ from django.shortcuts import render
 def welcome(request):
     return render(request, 'welcome.html')
 
-def search_results(request):
+def search_user(request):
     if 'search' in request.GET and request.GET["search"]:
         search_term = request.GET.get("search")
         searched_users = Profile.search_profile(search_term)
