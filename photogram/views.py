@@ -1,22 +1,31 @@
-from django.http  import HttpResponse
+from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render
 from .forms import ProfileForm
-from .models import Profile
+from .models import Profile,Post,Comment,Like,Follow,User
+from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 import datetime as dt
 
 # Create your views here.
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def welcome(request):
   date = dt.date.today()
+  posts= Post.objects.all().order_by("-id")
+  profiles= Profile.objects.all()
+  current_user = request.user
+  comments = Comment.objects.all()
+  likes = Like.objects.all()
   if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
             print('valid')
   else:
         form = ProfileForm()
-  return render(request,'welcome.html',{"date": date,"ProfileForm":form})
-
+  return render(request,'welcome.html',{"date": date,"posts":posts,"profiles":profiles,"current_user":current_user,
+                "comments":comments,"likes":likes})
+                
+@login_required(login_url='/accounts/login/')
 def search_user(request):
     if 'search' in request.GET and request.GET["search"]:
         search_term = request.GET.get("search")
