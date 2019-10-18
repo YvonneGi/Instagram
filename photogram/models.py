@@ -51,11 +51,11 @@ class Profile(models.Model):
 
         self.delete()
 
-class post(models.Model):
+class Post(models.Model):
     photo = models.ImageField(upload_to = 'photos/')
     name = models.CharField(max_length=255,null=True)
     caption = models.CharField(max_length=3000)
-    upload_by = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
     post_date=models.DateTimeField(auto_now_add=True)
 
@@ -88,4 +88,48 @@ class post(models.Model):
     def filter_by_caption(cls, search_term):
         return cls.objects.filter(caption__icontains=search_term)
 
+class Comment(models.Model):
+    comment_content = models.CharField(max_length=300)
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+
+    def save_comment(self):
+        '''Method to save a comment in the database'''
+        self.save()
+
+    def delete_comment(self):
+
+        ''' Method to delete a comment from the database'''
+        self.delete()
+
+class Like(models.Model):
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    control = models.CharField(max_length=50,unique=True, null=True)
+
+    def __str__(self):
+        return self.control
+
+    def save_like(self):
+        self.save()
+
+    @classmethod
+    def num_likes(cls, post_id):
+        post = Like.objects.filter(post=post_id)
+
    
+class Follow(models.Model):
+    username = models.ForeignKey(User, related_name='follower')
+    followed = models.ForeignKey(User, related_name='followed')
+    follow = models.CharField(max_length=50,unique=True, null=True)
+
+    def __str__(self):
+        return self.follow
+
+    def save_like(self):
+        self.save()
+
+    @classmethod
+    def get_following(cls, user_id):
+        following = Follow.objects.filter(user=user_id).all()
+        return following
