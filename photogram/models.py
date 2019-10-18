@@ -52,7 +52,7 @@ class Profile(models.Model):
         self.delete()
 
 class Post(models.Model):
-    photo = models.ImageField(upload_to = 'photos/')
+    photo = models.ImageField(upload_to = 'images/')
     name = models.CharField(max_length=255,null=True)
     caption = models.CharField(max_length=3000)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
