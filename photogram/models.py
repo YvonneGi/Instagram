@@ -34,25 +34,25 @@ class Profile(models.Model):
 
     def save_profile(self):
 
-        '''Method to save an image in the database'''
+        '''Method to save a profile in the database'''
 
         self.save()
 
 
     def update_profile(self):
 
-        ''' Method to update a image in the database'''
+        ''' Method to update a profile in the database'''
 
         self.update()
 
     def delete_profile(self):
 
-        ''' Method to delete an image from the database'''
+        ''' Method to delete a profile from the database'''
 
         self.delete()
 
 class post(models.Model):
-    image = models.ImageField(upload_to = 'photos/')
+    photo = models.ImageField(upload_to = 'photos/')
     name = models.CharField(max_length=255,null=True)
     caption = models.CharField(max_length=3000)
     upload_by = models.ForeignKey(Profile,on_delete=models.CASCADE)
@@ -63,7 +63,16 @@ class post(models.Model):
         return self.caption
 
     def save_photo(self, user):
+        '''Method to save an image in the database'''
         self.save()
+
+    def update_photo(self,user):
+        ''' Method to update an image in the database'''
+        self.update()
+
+    def delete_photo(self, user):
+        ''' Method to delete an image from the database'''
+        self.delete()
 
     @classmethod
     def all_photos(cls):
@@ -79,5 +88,4 @@ class post(models.Model):
     def filter_by_caption(cls, search_term):
         return cls.objects.filter(caption__icontains=search_term)
 
-    def delete_photo(self, user):
-        self.delete()
+   
