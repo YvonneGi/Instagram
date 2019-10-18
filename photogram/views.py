@@ -1,10 +1,21 @@
 from django.http  import HttpResponse
 from django.shortcuts import render
-# import datetime as dt
+from .forms import ProfileForm
+from .models import Profile
+from django.contrib.auth.decorators import login_required
+import datetime as dt
 
 # Create your views here.
+# @login_required(login_url='/accounts/login/')
 def welcome(request):
-    return render(request, 'welcome.html')
+  date = dt.date.today()
+  if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            print('valid')
+  else:
+        form = ProfileForm()
+  return render(request,'welcome.html',{"date": date,"ProfileForm":form})
 
 def search_user(request):
     if 'search' in request.GET and request.GET["search"]:

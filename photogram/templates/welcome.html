@@ -23,11 +23,25 @@
 
 <body>
   {% include "navbar.html" %}
- 
+
   {% block content %}
   <hr>
   <div class="container-fluid">
     <h1>Welcome to Photogram</h1>
+
+    <div class="row">
+      <div class="col-md-8 col-lg-8">
+          <!-- <form  action="{%url 'newsToday'%}" method="post">
+              {%csrf_token%}
+          
+              {% bootstrap_form profileForm layout='inline' %}
+              <input type="submit" value="Subscribe">
+            </form> -->
+      </div>
+
+
+
+    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% bootstrap_javascript %}
   {% endblock %}
