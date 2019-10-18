@@ -1,0 +1,84 @@
+{% extends 'registration/base.html' %}
+
+{% load static %}
+
+<!-- {% load friendshiptags %} -->
+
+{% block content %}
+{{ form.media }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div
+          style="overflow:hidden; -webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:90px;height:90px;">
+          {% if profile_details.profile_pic %}
+          <img class="img-rounded" src="{{profile_details.profile_pic.cdn_url}}" alt="photo">
+          {% else %}
+          <img class="img-rounded" src=" {% static 'img/avi.jpeg' %}">
+          {% endif %}
+        </div>
+        <div class="col-md-5 text-center">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span class="username">{{ profile_details.owner }}</span>
+            </li>
+            {% if profile.owner.id == user.id %}
+            <li class="list-inline-item">
+              <a href="{% url 'profile' %}">Edit Profile</a>
+            </li>
+            {% else %}
+            <li class="list-inline-item">
+              <a href="{% url 'follow' user_id=profile.id %}" class="btn btn-primary">Follow</a>
+            </li>
+            {% endif %}
+
+
+          </ul>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span class="font-weight-bold">{{images|length}} </span> Posts
+            </li>
+            <span class="font-weight-bold"> {{following}} </span> Following
+            <span class="font-weight-bold"> {{follower}} </span>Followers
+
+            {% if people in pip_following %}
+            <li class="list-inline-item">
+              <span class="font-weight-bold"></span> Following
+            </li>
+            {% else %}
+            <li href="{% url 'follow' user_id=profile.id %}" class="list-inline-item">
+            </li>
+
+            {% endif %}
+          </ul>
+          <p>{{profile_details.bio}}</p>
+          {% if profile.owner == user.id %}
+          <p><a href="{% url 'upload_image' %}">Add Image</a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    {% for image in images %}
+    <div class="col-md-4">
+      <h3 class="card-title">
+        {{image.caption}}</h3>
+      <div class="card" style="width: auto">
+        <img src="{{image.pic.cdn_url}}" alt="Image" class="card-img-top">
+
+      </div>
+
+    </div>
+    {% empty %}
+    <div class="col-md-12">
+      <h2><a href="{% url 'upload_image' %}">Add Image</a></h2>
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
