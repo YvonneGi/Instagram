@@ -1,11 +1,9 @@
-from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render,redirect
-from .forms import ProfileForm,ImageForm,LikeForm,CommentForm
-from .models import Profile,Post,Comment,Like,Follow,User
-# from .email import send_welcome_email
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-# from friendship.exceptions import AlreadyExistsError
+from .models import Post,Profile,Comment,Like,Follow,User
+from .forms import ProfileForm,CommentForm,LikeForm
 from django.db.models import Q
 import datetime as dt
 
