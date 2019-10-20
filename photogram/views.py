@@ -92,6 +92,7 @@ def profile(request,id):
     user_object = request.user
     current_user = Profile.objects.get(username__id=request.user.id)
     user = Profile.objects.get(username__id=id)
+    posts = Post.objects.filter(upload_by = user)
     posts = Post.objects.all()
     follows = Follow.objects.all()
 

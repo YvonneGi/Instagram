@@ -51,9 +51,8 @@ class Profile(models.Model):
 
 class Post(models.Model):
     photo = models.ImageField(upload_to = 'images/')
-    name = models.CharField(max_length=255,null=True)
     caption = models.CharField(max_length=3000)
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    upload_by = models.ForeignKey(Profile)
     likes = models.IntegerField(default=0)
     post_date=models.DateTimeField(auto_now_add=True)
 
