@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+  <p>Discover People</p>
+  <div class="row">
+    {% for profile in profiles %}
+    <div class="col-md-4">
+      <div class="rounded text-center border border-primary pt-2" width="250" height="200">
+        {% if profile.profile_pic %}
+          <img src="{{profile.profile_pic.url}}" class="rounded img-fluid" alt=""  width="75px" height="75px">
+        {% else %}
+          <img src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="rounded img-fluid" alt=""  width="75px" height="75px">
+        {% endif %}        <p class="mt-1"><a href="{% url 'profile' profile.username.id %}">{{profile.username.username}}</a></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div> <!-- end div row-->
+
+
+  <div class="mb-5">
+  </div>
+
+  <p>Explore</p>
+  <div class="row">
+    {% for post in posts %}
+    <div class="col-md-4 mt-3 mb-3">
+      <img src="{{post.photo_pic.url}}" alt="" width="300" height="200">
+    </div>
+    {% endfor %}
+  </div> <!-- end div row-->
+
+</div>
+
+
+
+
+{% endblock %}
