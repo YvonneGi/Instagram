@@ -3,7 +3,7 @@ from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Post,Profile,Comment,Like,Follow,User
-from .forms import ProfileForm,CommentForm,LikeForm
+from .forms import NewPostForm,ProfileForm,CommentForm,LikeForm,FollowForm
 from django.db.models import Q
 import datetime as dt
 
@@ -38,7 +38,7 @@ def welcome(request):
             like.save()
             print("like saved")
 
-        return redirect("timeline")
+        return redirect("welcome")
     else:
         likeform = LikeForm()
 
@@ -92,7 +92,7 @@ def profile(request,id):
     user_object = request.user
     current_user = Profile.objects.get(username__id=request.user.id)
     user = Profile.objects.get(username__id=id)
-    posts = Post.objects.filter(upload_by = user)
+    posts = Post.objects.all()
     follows = Follow.objects.all()
 
     if request.method == 'POST' and 'follower' in request.POST:
@@ -125,7 +125,7 @@ def profile(request,id):
 
 
     follows = Follow.objects.all()
-    followz = Follow.objects.values_list('follow_id', flat=True)
+    followz = Follow.objects.values_list('follow', flat=True)
     followz =list(followz)
     follower =0
     following = 0
@@ -148,7 +148,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.upload_by = current_user
             post.save()
-        return redirect('timeline')
+        return redirect('welcome')
 
     else:
         form = NewPostForm()

@@ -12,8 +12,6 @@ class Profile(models.Model):
     username = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     bio = HTMLField(null=True)
     email = models.EmailField(null=True)
-    phonenumber = models.IntegerField(null=True)
-    # gender = models.CharField(max_length=15,choices=Gender,default="Male",null=True)
 
     def __str__(self):
         return self.username.username
