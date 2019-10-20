@@ -36,7 +36,6 @@
   border: 1px solid #cccccc;
   height: 25px;
   padding-left: 10px; 
-  /* background-image: url('https://addons.thunderbird.net/user-media/addon_icons/0/139-64.png?modified=1366045806') */
 }
 
 </style>
@@ -56,7 +55,7 @@
       </div>
 
       <div id='center'>
-        <form class="navbar-form navbar-left" >
+        <form class="navbar-form navbar-left" action="{% url 'search_results'%}">
           <div class="form-group">
             <input id="input-field" type="text" placeholder='search' style="text-align: center" name="search">
            
@@ -64,9 +63,9 @@
         </form>
       </div>
       <div id='right'>
-        <a class="mr-2"><img src='https://static.thenounproject.com/png/169707-200.png' class='nav-icon'></a>
+        <a class="mr-2" href="{% url 'profile' request.user.id %}"><img src='https://static.thenounproject.com/png/169707-200.png' class='nav-icon'></a>
         <a class="mr-2" href="#"><img src='http://image.flaticon.com/icons/png/128/126/126471.png' class='nav-icon'></a>
-        <a class="mr-2" ><img src='http://freeiconbox.com/icon/256/23228.png' class='nav-icon'></a>
+        <a class="mr-2" href="{% url 'explore' %}"><img src='http://freeiconbox.com/icon/256/23228.png' class='nav-icon'></a>
 
       </div>
     </div>

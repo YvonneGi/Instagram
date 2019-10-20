@@ -80,7 +80,6 @@ def search_results(request):
         return render(request,'search.html',{"message":message,"users":searched_users})
 
 
-
 @login_required(login_url='/accounts/login/')
 def explore(request):
     posts = Post.objects.all()
