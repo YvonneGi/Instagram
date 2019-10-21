@@ -14,21 +14,36 @@ class ProfileTestClass(TestCase):
         self.assertTrue(isinstance(self.fina,Profile))
     # Testing Save Method
     def test_save_method(self):
-        self.fina.save_profile()
+        self.fina.save_user_profile()
         profile = Profile.objects.all()
         self.assertTrue(len(profile) == 1)
-    # # Testing update Method   
-    # def test_update(self):
-    #     self.wall.save_image()
-    #     image = Images.objects.filter(name = "Wall").first()
-    #     update = Images.objects.filter (id=image.id).update(name = "Heaven")
-    #     updated = Images.objects.filter(name = "Heaven").first()
-    #     self.assertTrue(Images.name,updated.name)
+    # Testing update Method   
+    def test_update(self):
+        self.fina.save_user_profile(self)
+        profile = Profile.objects.filter(fullname = "Fina").first()
+        update = Profile.objects.filter (id=profile.id).update(fullname = "Anna")
+        updated = Profile.objects.filter(fullname = "Anna").first()
+        self.assertTrue(updated.fullname)
     # # Testing delete Method
-    # def test_delete(self):
-    #     self.wall.save_photo()
-    #     photo = Post.objects.filter(caption="Wall").first()
-    #     delete = Post.objects.filter(id=photo.id).delete()
-    #     photo = Post.objects.all()
-    #     self.assertTrue(len(photo) ==0 )
+    def test_delete(self):
+        self.fina.save_user_profile(self)
+        username = Profile.objects.filter(fullname="Fina").first()
+        delete = Profile.objects.filter(id=username.id).delete()
+        username = Profile.objects.all()
+        self.assertTrue(len(username) ==0 )
+
+
+# Tests for Follow model.
+# class FollowTestClass(TestCase):
+#     # Set up method
+#     def setUp(self):
+#         self.1= Follow(follow = '1')
+#     # Testing  instance
+#     def test_instance(self):
+#         self.assertTrue(isinstance(self.1,Follow))
+    # Testing Save Method
+    # def test_save_method(self):
+    #     self.car.save_category()
+    #     categories = Category.objects.all()
+    #     self.assertTrue(len(categories) > 0)
 
