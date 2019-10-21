@@ -13,7 +13,6 @@ def welcome(request):
     posts= Post.objects.all().order_by("-id")
     profiles= Profile.objects.all()
     current_user = request.user
-
     comments=Comment.objects.all()
     likes = Like.objects.all()
 
@@ -108,13 +107,6 @@ def profile(request,id):
         return redirect("profile", user.username.id)
     else:
         followform = FollowForm()
-
-    # if request.method == 'POST' and 'unfollower' in request.POST:
-    #     followed_user_id = request.POST.get("unfollower")
-    #     followed_user = User.objects.get(pk=followed_user_id)
-    #     follow_id = str(request.user.id)+"-"+str(followed_user.id)
-    #     follow_delete = Follow.objects.get(follow_id=follow_id)
-    #     follow_delete.delete()
     follows = Follow.objects.all()
     followz = Follow.objects.values_list('follow', flat=True)
     followz =list(followz)
@@ -153,13 +145,10 @@ def edit_profile(request):
         form=ProfileForm(request.POST,request.FILES,instance=request.user.profile)
         if form.is_valid():
             form.save()
-            print('success')
-            
+                   
     else:
         form=ProfileForm(instance=request.user.profile)
-        print('error')
-
-
+     
     return render(request,'edit_profile.html',locals())
 
 

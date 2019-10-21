@@ -59,15 +59,15 @@ class Post(models.Model):
     def __str__(self):
         return self.caption
 
-    def save_photo(self, user):
+    def save_photo(self):
         '''Method to save an image in the database'''
         self.save()
 
-    def update_photo(self,user):
+    def update_photo(self):
         ''' Method to update an image in the database'''
         self.update()
 
-    def delete_photo(self, user):
+    def delete_photo(self):
         ''' Method to delete an image from the database'''
         self.delete()
 
