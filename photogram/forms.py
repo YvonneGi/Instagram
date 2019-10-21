@@ -6,13 +6,7 @@ from .models import *
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude=['']
-class ImageForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        exclude =['likes','profile']
-
-        
+        exclude=['']       
 class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment

@@ -42,13 +42,6 @@ def welcome(request):
     else:
         likeform = LikeForm()
 
-    if request.method == 'POST' and 'unliker' in request.POST:
-        post_id = request.POST.get("unliker")
-        post = Post.objects.get(pk=post_id)
-        control = str(request.user.id)+"-"+str(post.id)
-        like_delete = Like.objects.get(control=control)
-        like_delete.delete()
-
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -116,15 +109,12 @@ def profile(request,id):
     else:
         followform = FollowForm()
 
-    if request.method == 'POST' and 'unfollower' in request.POST:
-        followed_user_id = request.POST.get("unfollower")
-        followed_user = User.objects.get(pk=followed_user_id)
-        follow_id = str(request.user.id)+"-"+str(followed_user.id)
-        follow_delete = Follow.objects.get(follow_id=follow_id)
-        follow_delete.delete()
-
-
-
+    # if request.method == 'POST' and 'unfollower' in request.POST:
+    #     followed_user_id = request.POST.get("unfollower")
+    #     followed_user = User.objects.get(pk=followed_user_id)
+    #     follow_id = str(request.user.id)+"-"+str(followed_user.id)
+    #     follow_delete = Follow.objects.get(follow_id=follow_id)
+    #     follow_delete.delete()
     follows = Follow.objects.all()
     followz = Follow.objects.values_list('follow', flat=True)
     followz =list(followz)

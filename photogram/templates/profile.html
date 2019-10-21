@@ -24,7 +24,7 @@
 
       {% if user == current_user %}
       <a href="{% url 'edit-profile' %}">
-        <button class="btn btn-warning" type="button" name="button"><img
+        <button class="btn btn-dark" type="button" name="button"><img
             src="https://img.icons8.com/color/48/000000/pencil.png" width="24">Edit Profile</button>
       </a>
       <a href="/logout/">
@@ -58,8 +58,7 @@
       <form action="{%url 'profile' user.username.id%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <input type="hidden" name="follower" style="position:relative;left:10px" value='{{user.id}}'>
-        <button class="btn btn-success" type="submit"><img
-            src="https://img.icons8.com/color/48/000000/human-footprints.png" width="24">Follow</button>
+        <button class="btn btn-success" type="submit">Follow</button>
       </form>
 
       {% endif %}
@@ -69,32 +68,19 @@
       {% endwith %}
 
       {% endif %}
-
-
-
     </div>
     <div class="col-md-3">
-      {% autoescape on %}
+      
       <p>{{user.bio | safe}}</p>
-      {% endautoescape %}
-
-      <p>{{user.phonenumber}}</p>
-      <p>{{user.gender}}</p>
-
+      
     </div>
-
   </div>
-
-
   <p><strong>Following:</strong> {{following}}</p>
   <p><strong>Followers:</strong> {{follower}}</p>
-
-
-
   <p class="mt-5 font-weight-bold" style="text-decoration: underline;">Photos</p>
   {% if user == current_user %}
   <a href="{% url 'new-post' %}">
-    <button class="btn btn-success" type="button" name="button"><img
+    <button class="btn btn-success btn-lg" type="button" name="button"><img
         src="https://img.icons8.com/nolan/48/000000/plus-math.png" width="24"> Add Photo</button>
   </a>
   {% endif %}
