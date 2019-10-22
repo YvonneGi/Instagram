@@ -1,4 +1,3 @@
-  
 {% extends "registration/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
@@ -10,50 +9,50 @@
     <div class="col-md-2">
     </div>
 
-    <div class="col-md-4 phone-section">
+    <div class="col-md-3">
       <div class="phones">
-        <img class="screen-image" src="{% static 'images/insta-screen.png' %}" alt="" width="80%" height="80%">
+        <img class="screen-image" src="{% static 'images/insta-screen.png' %}" alt="" width="80%" height="80%" style="margin-top: 20%;">
       </div>
     </div>
-    <div class="col-md-5 form-section">
+    <div class="col-md-5" style="margin-top: 5%;">
 
       {% if form.errors %}
-        <p>Password or Username is incorrect</p>
+      <p>Password or Username is incorrect</p>
       {% endif %}
 
       <div class="card card-default">
 
         <div class="card-body">
           <div class="logo-header">
-            <img class="text-center" src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/100px-Instagram_logo.svg.png' id='logo-name' style="width: 30%;height:20%;">
-          </div> 
+            <img class="text-center"
+              src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/100px-Instagram_logo.svg.png'
+              id='logo-name' style="width: 30%;height:20%;">
+          </div>
           <div class="text-center">
-          <form action="/accounts/login/" method="post">
+            <form action="/accounts/login/" method="post">
 
-            {% csrf_token%}
-            {% bootstrap_form form %}
+              {% csrf_token%}
+              {% bootstrap_form form %}
 
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary login-button" value="Log in">
-              
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary login-button" value="Log in">
+              </div>
+              <input type="hidden" name="next" value="/">
 
-            </div>
-            <input type="hidden" name="next" value="/">
-
-          </form>
-        </div>
+            </form>
+          </div>
         </div>
 
       </div>
 
       <div class="card card-default">
         <div class="card-body text-center">
-          <p> Don't have  an account? <span><a class="" href="/accounts/register">Sign Up</a></span></p>
+          <p> Don't have an account? <span><a class="" href="/accounts/register">Sign Up</a></span></p>
 
         </div>
       </div>
     </div>
-  
+
     <div class="col-md-2"></div>
   </div>
 </div>
