@@ -14,6 +14,8 @@ class ProfileTestClass(TestCase):
         self.assertTrue(isinstance(self.fina,Profile))
     # Testing Save Method
     def test_save_method(self):
+        self.fina= Profile(id=1,profile_pic = '/static/images/insta-screen.png',fullname = 'Fina',
+        bio='Crazy',email='gi@gmail.com')
         self.fina.save_user_profile()
         profile = Profile.objects.all()
         self.assertTrue(len(profile) == 1)
