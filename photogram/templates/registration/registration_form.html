@@ -9,13 +9,13 @@
     <div class="col-md-2">
     </div>
 
-    <div class="col-md-4 phone-section">
+    <div class="col-md-3">
       <div class="phones">
-        <img class="screen-image" src="{% static 'images/insta-screen.png' %}" alt="" width="85%" height="85%">
+        <img class="screen-image" src="{% static 'images/insta-screen.png' %}" alt="" width="80%" height="80%" style="margin-top: 20%;">
       </div>
     </div>
 
-    <div class="col-md-5 form-section">
+    <div class="col-md-5" style="margin-top: 5%;">
 
       {% if form.errors %}
       <p>Password or Username is incorrect</p>
@@ -27,7 +27,7 @@
           <div class="logo-header">
             <img class="text-center"
               src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png'
-              style="width: 100px;height:20px;"id='logo-name'>
+              style="width: 30%;height:20%;" id='logo-name'>
           </div>
           <div class="text-center">
             <form action="/accounts/register/" method="post">
