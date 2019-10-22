@@ -30,12 +30,6 @@ class Profile(models.Model):
         profiles = cls.objects.filter(Q(username__username = search_term) | Q(fullname__icontains=search_term))
         return profiles
 
-    def save_profile(self):
-
-        '''Method to save a profile in the database'''
-
-        self.save()
-
 
     def update_profile(self):
 
