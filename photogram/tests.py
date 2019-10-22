@@ -85,3 +85,18 @@ class CommentTestClass(TestCase):
         self.assertTrue(len(comments) ==0 )
 
 
+class FollowTestClass(TestCase):
+
+    # Set up method
+    def setUp(self):
+        self.kk= Follow(follow = 'kk')
+    # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.kk,Follow))
+    # Testing Save Method
+    def test_save_method(self):
+        self.kk.save_follow()
+        follows = Follow.objects.all()
+        self.assertTrue(len(follows) > 0)
+
+
