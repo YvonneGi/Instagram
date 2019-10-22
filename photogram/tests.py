@@ -20,19 +20,19 @@ class ProfileTestClass(TestCase):
         profile = Profile.objects.all()
         self.assertTrue(len(profile) == 1)
     # Testing update Method   
-    def test_update(self):
-        self.fina.save_user_profile(self)
-        profile = Profile.objects.filter(fullname = "Fina").first()
-        update = Profile.objects.filter (id=profile.id).update(fullname = "Anna")
-        updated = Profile.objects.filter(fullname = "Anna").first()
-        self.assertTrue(updated.fullname)
-    # # Testing delete Method
-    def test_delete(self):
-        self.fina.save_user_profile(self)
-        username = Profile.objects.filter(fullname="Fina").first()
-        delete = Profile.objects.filter(id=username.id).delete()
-        username = Profile.objects.all()
-        self.assertTrue(len(username) ==0 )
+    # def test_update(self):
+    #     self.fina.save_user_profile(self)
+    #     profile = Profile.objects.filter(fullname = "Fina").first()
+    #     update = Profile.objects.filter (id=profile.id).update(fullname = "Anna")
+    #     updated = Profile.objects.filter(fullname = "Anna").first()
+    #     self.assertTrue(updated.fullname)
+    # # # Testing delete Method
+    # def test_delete(self):
+    #     self.fina.save_user_profile(self)
+    #     username = Profile.objects.filter(fullname="Fina").first()
+    #     delete = Profile.objects.filter(id=username.id).delete()
+    #     username = Profile.objects.all()
+    #     self.assertTrue(len(username) ==0 )
 
 
 # Tests for Follow model.
