@@ -99,4 +99,18 @@ class FollowTestClass(TestCase):
         follows = Follow.objects.all()
         self.assertTrue(len(follows) > 0)
 
+class LikeTestClass(TestCase):
+
+    # Set up method
+    def setUp(self):
+        self.kk = Like(control = 'kk')
+    # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.kk,Like))
+    # Testing Save Method
+    def test_save_method(self):
+        self.kk.save_like()
+        likes = Like.objects.all()
+        self.assertTrue(len(likes) > 0)
+
 
